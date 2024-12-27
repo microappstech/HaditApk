@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      المجموعات
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">المجموعات</ion-title>
+    </ion-toolbar>
+  </ion-header>
+@for (item of this.categories; track $index) {
+  <!-- <ion-item > -->
+
+    <ion-card [routerLink]="['/hadites', item.id]">
+      <ion-card-header>
+        <ion-card-title>{{item.name}}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-card-subtitle>تصفح الأحاديث</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  <!-- </ion-item> -->
+  }
+
+</ion-content>

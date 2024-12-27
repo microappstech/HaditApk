@@ -1,0 +1,7 @@
+{
+  "name": "HaditApk",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
