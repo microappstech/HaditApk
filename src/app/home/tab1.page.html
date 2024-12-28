@@ -1,17 +1,23 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       المجموعات
     </ion-title>
   </ion-toolbar>
+</ion-header> -->
+<!-- <app-header-component [Title]="'المجموعات'"></app-header-component> -->
+<ion-header [translucent]="true" class="top-header">
+  <div class="right-content">
+    <div class="content-top-header">
+      <ion-title class="">
+        المجموعات
+      </ion-title>
+    </div>
+  </div>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">المجموعات</ion-title>
-    </ion-toolbar>
-  </ion-header>
 @for (item of this.categories; track $index) {
   <!-- <ion-item > -->
 

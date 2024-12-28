@@ -1,0 +1,16 @@
+.toolbar-flex {
+    display: flex;
+    background-color: red;
+    justify-content: space-between; /* Space between left and right */
+    align-items: center; /* Align items vertically in the center */
+  }
+  
+.top-header{
+    display: flex;
+    padding-top: 10px;
+    height: 8%;
+}
+.content-top-header{
+    display: flex;
+    width: 100%;
+}
