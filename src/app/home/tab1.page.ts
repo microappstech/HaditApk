@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HaditServiceService } from '../../services/ClientService.service';
+import { HeaderComponentComponent } from 'src/component/header-component/header-component.component';
 
 @Component({
   selector: 'app-tab1',

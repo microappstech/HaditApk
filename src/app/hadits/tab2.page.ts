@@ -48,10 +48,11 @@ export class Tab2Page implements OnInit {
   getCategory(id: any){
     if(id === "0"){
       this.categoryName = "كل الأحاديث";
+    }else{
+      this.haditService.getCategoryById(id).subscribe((data:any)=>{
+        this.categoryName = data?.data?.name;
+      })
     }
-    this.haditService.getCategoryById(id).subscribe((data:any)=>{
-      this.categoryName = data.data.name;
-    })
     return
   }
   fetchHadites()
@@ -59,10 +60,8 @@ export class Tab2Page implements OnInit {
     if(this.id ==="0"){
       this.haditService.getAllHadites()
         .subscribe((data:any)=>{
+          console.log(data)
           this.hadites = data.data;
-        },
-        (error:any)=>{
-          console.log("error",error)
         });
 
     }else{
