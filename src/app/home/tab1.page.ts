@@ -22,7 +22,7 @@ export class Tab1Page implements OnInit{
     this.haditService.getCategories().subscribe((data: any)=>{
       this.categories = data.data;
     this.categories.unshift({id:0,name:"كل الأحاديث"});
-    console.log(this.categories);
+    // console.log(this.categories);
     });
   }
 }

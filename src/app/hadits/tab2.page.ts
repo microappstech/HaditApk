@@ -10,12 +10,41 @@ import { HaditServiceService } from 'src/services/ClientService.service';
   standalone: false,
 })
 export class Tab2Page implements OnInit {
-   hadites: any = [];    
+   hadites: any[] = [];   
+   favorites: number[]=[]; 
    isLoading = false;
    searchControl = new FormControl("");
   id!:string;
   categoryName:any = "";
   constructor(private router:ActivatedRoute,private haditService: HaditServiceService) {}
+
+  loadFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    this.favorites = favorites;
+
+    this.hadites.forEach((item: any) => {
+      // console.log(favorites.some((fav: any) => fav.id === item.id))
+      item.isFavorite = favorites.some((fav: any) => fav.id === item.id);
+    });
+
+  }
+
+  onHeartClick(item:any) {
+    item.isFavorite = !item.isFavorite;
+    this.updateFavorites(item);
+  }
+  
+  updateFavorites(item: any) {
+    let favoritesList = JSON.parse(localStorage.getItem('favorites')|| '[]');    
+    if (item.isFavorite) {
+      if (!favoritesList.some((fav: any) => fav.id === item.id)) {
+        favoritesList.push(item);
+      }
+    } else {
+      favoritesList = favoritesList.filter((fav: any) => fav.id !== item.id);
+    }
+    localStorage.setItem('favorites', JSON.stringify(favoritesList));
+  }
   ngOnInit(){
     const id = this.router.snapshot.paramMap.get('id');
     if(id!==null){
@@ -25,16 +54,9 @@ export class Tab2Page implements OnInit {
     this.getCategory(this.id);
 
     this.searchControl.valueChanges.subscribe((value) => {
-      console.log(value);
-      // this.isLoading = true;
-      // this.haditeseService.searchHadites(value)
-      // .subscribe((data: any)=>{
-      //   this.Hadites = data.data;
-      //   this.isLoading = false;
-      // });
       this.searchHadit(value);
     });
-
+    this.loadFavorites();
   }
   searchHadit(value: any){
     console.log("Search Applied");
@@ -60,20 +82,17 @@ export class Tab2Page implements OnInit {
     if(this.id ==="0"){
       this.haditService.getAllHadites()
         .subscribe((data:any)=>{
-          console.log(data)
           this.hadites = data.data;
+          
+          this.loadFavorites();
         });
 
     }else{
       this.haditService.getHaditesByCategory(this.id)
         .subscribe((data:any)=>{
           this.hadites = data.data;
-          console.log("this data is full",data.data)
-        },
-        (error:any)=>{
-          console.log("error",error)
+          this.loadFavorites();
         });
-        console.log("but this is empty ",this.hadites)
     }
   }
 }

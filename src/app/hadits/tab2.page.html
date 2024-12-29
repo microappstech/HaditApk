@@ -23,7 +23,14 @@
         </ion-card-header>
         
         <ion-card-content>
-          <ion-card-subtitle>{{item.onPublisher}}</ion-card-subtitle>
+          <ion-item lines="none">
+            <ion-icon  name="heart"
+             slot="start"
+             [class.red]="item.isFavorite || favorites.includes(item.id)" 
+             (click)="onHeartClick(item)">
+            </ion-icon>
+            <ion-card-subtitle>{{item.onPublisher}}</ion-card-subtitle>
+          </ion-item>
         </ion-card-content>
       </ion-card>
     </div>

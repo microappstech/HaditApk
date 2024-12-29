@@ -1,0 +1,38 @@
+<ion-header [translucent]="true" class="top-header">
+  <div class="right-content">
+    <div class="content-top-header">
+      <ion-title class="">
+        المفضلات
+      </ion-title>
+    </div>
+  </div>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+<br>
+<br>
+<br>
+<!-- <app-search (AssumeHardSearch)="searchHadit(searchControl.value)" [searchControl]="searchControl"></app-search> -->
+@for (item of this.favoritesList; track $index) {
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{item.content}}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-icon  name="heart"
+           slot="start"
+           class="favory" 
+           (click)="onHeartClick(item)">
+          </ion-icon>
+          <ion-card-subtitle>{{item.onPublisher}}</ion-card-subtitle>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+}
+</ion-content>
